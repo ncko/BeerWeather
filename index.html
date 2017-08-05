@@ -9,14 +9,61 @@
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-  <div class="wrapper">
+  <div class="wrapper sticky-footer">
 
-  <h1>Beer Weather</h1>
+  <header role="banner">
+    <h1>BeerWeather</h1>
+  </header>
 
-  <h2>Under Construction</h2>
-  <p>Get a beer, it is going to be a while.</p>
+  <main role="main">
+    
+    <section id="js-start-screen" class="hidden" hidden>
+      <p class="lead">Match your local weather to a good beer.</p>
 
-  </div>
+      <form id="js-form" class="form" action="" role="form">
+        <fieldset>
+          <legend>Where Are You?</legend>
+          <input type="text" name="place" placeholder="City, State">
+          <button type="submit">Submit</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <section id="js-loading-screen" class="loading-screen-section hidden" hidden>
+      <ul class="loading-list">
+        <li class="done">Obtaining Coordinates</li>
+        <li class="done">Finding Local Weather</li>
+        <li>Mapping Weather to Beer</li>
+      </ul>
+      <p>(This is some sophisticated stuff.)</p>
+    </section>
+
+    <section id="js-results-screen" class="">
+      <p class="lead">In Temecula, CA, it is cold and rainy. Perfect weather for a nice Porter.</p>
+
+      <article class="beer-info media">
+        <div class="media__img"><img src="http://placekitten.com/g/300/300" alt="A beautiful beer"></div>
+        <div class="media__body">
+          <h2>Chocolate Porter by Hangar 24</h2>
+          <p>Rich, decadent and full-bodied. The intense, roasted malt flavor is derived from two types of chocolate malt and raw cocoa nibs. Whole vanilla beans introduced post-fermentation adds complexity and enhances the desert-like quality.</p>
+        </div>
+      </article>
+
+      <div class="btn-panel">
+       <button class="start-again-btn" type="button">Start Again</button>
+       <button class="another-recommendation-btn" type="button">Another Recommendation</button>
+      </div>
+    </section>
+
+  </main>
+
+  </div><!-- /wrapper -->
+
+  <footer role="contentinfo">
+    <div class="wrapper">
+      <p>Powerd By <a href="http://www.brewerydb.com/">BreweryDB</a>, <a href="http://geocode.xyz">Geocode.xyz</a>, and <a href="http://openweathermap.org">OpenWeatherMap.org</a>.</p>
+    </div>
+  </footer>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
   <script src="main.js"></script>

@@ -1,12 +1,125 @@
-body {
-  font: 16px/1.5 sans-serif;
-  text-align: center;
-  padding-top: 3rem;
-  background-color: #efefef;
+*, *:before, *:after {
+  box-sizing: border-box;
 }
 
-h1, h2, p {
+/* Consistent vertical rhythm on all block level elements used */
+h1, h2, p, li, ul, form {
   margin: 0;
   padding: 0;
   margin-bottom: 1.5rem;
+}
+
+li {
+  margin-left: 1.5rem;
+}
+
+/* base element styles */
+body {
+  font: 16px/1.5 sans-serif;
+  padding-top: 3rem;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+header {
+  text-align: center;
+}
+
+section.loading-screen-section {
+  text-align: center;
+}
+
+.sticky-footer { /* pushes the footer down to the bottom of the page */
+  min-height: calc(100vh - 7.5rem);
+}
+
+footer {
+  text-align: center;
+  height: 2.5rem;
+}
+
+.form {
+  margin-top: 6rem;
+  text-align: center;
+}
+
+  .form legend {
+    font-size: 1.5rem;
+  }
+
+  .form fieldset {
+    border: 0;
+    font-size: 0;
+  }
+
+  .form input[type="text"] {
+    padding: 0.75rem;
+    width: 100%;
+    max-width: 300px;
+    font-size: 1rem;
+  }
+
+  .form button[type="submit"] {
+    font-size: 1rem;
+  }
+
+button {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  padding: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+button:hover, button:focus {
+  background-color: white;
+  color: black;
+}
+
+
+/* objects */
+.lead {
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.media:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.media__img {
+  float: left;
+  margin-right: 1.5rem;
+}
+
+/* components */
+.loading-list {
+  font-size: 1.25rem;
+  text-align: left;
+  display: inline-block;
+  margin-top: 6rem;
+}
+
+.beer-info {
+  margin: 3rem 0;
+}
+
+.another-recommendation-btn {
+  float: right;
+}
+
+.btn-panel {
+  margin: 0 auto;
+  max-width: 500px;
 }
