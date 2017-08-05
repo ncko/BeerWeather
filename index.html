@@ -17,13 +17,13 @@
 
   <main role="main">
     
-    <section id="js-start-screen" class="hidden" hidden>
+    <section id="js-start-screen" class="">
       <p class="lead">Match your local weather to a good beer.</p>
 
       <form id="js-form" class="form" action="" role="form">
         <fieldset>
           <legend>Where Are You?</legend>
-          <input type="text" name="place" placeholder="City, State">
+          <input id="js-input" type="text" name="place" placeholder="City, State" disabled>
           <button type="submit">Submit</button>
         </fieldset>
       </form>
@@ -38,7 +38,7 @@
       <p>(This is some sophisticated stuff.)</p>
     </section>
 
-    <section id="js-results-screen" class="">
+    <section id="js-results-screen" class="hidden" hidden>
       <p class="lead">In Temecula, CA, it is cold and rainy. Perfect weather for a nice Porter.</p>
 
       <article class="beer-info media">
@@ -66,6 +66,10 @@
   </footer>
 
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="main.js"></script>
+  <script src="js/event-emitter.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/start-screen.js"></script>
+  <script src="js/progress-screen.js"></script>
+  <script src="js/results-screen.js"></script>
 </body>
 </html>
