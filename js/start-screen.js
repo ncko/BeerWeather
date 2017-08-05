@@ -1,5 +1,8 @@
 "use strict";
 
+/*
+ *  This module manages the start screen
+ */
 (function($, eventEmitter) {
 
   eventEmitter.on('init-app', init);
@@ -30,11 +33,11 @@
    *    - tell the user to try again
    */
   function submitForm() {
-    const input = $FORM.find('input:text').val();
+    const input = $FORM.find('input:text').val().trim();
 
-    if (validateInput(input.trim())) {
+    if (validateInput(input)) {
       $SCREEN.hide();
-      eventEmitter.emit('submit-location');
+      eventEmitter.emit('submit-location', input);
     } else {
       $FORM.find('input:text').val('');
       showInvalidInputError();
