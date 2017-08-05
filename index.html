@@ -32,9 +32,9 @@
 
     <section id="js-loading-screen" class="loading-screen-section hidden" hidden>
       <ul id="js-loading-list" class="loading-list">
-        <li class="done">Obtaining Coordinates</li>
-        <li class="done">Finding Local Weather</li>
-        <li>Mapping Weather to Beer</li>
+        <li id="js-coordinates-received">Coordinates Recieved</li>
+        <li id="js-forecast-received">Weather Forecast Received</li>
+        <li id="js-beer-list-received">Mapping Beer to Weather</li>
       </ul>
       <p>(This is some sophisticated stuff.)</p>
     </section>
@@ -72,5 +72,6 @@
   <script src="js/start-screen.js"></script>
   <script src="js/progress-screen.js"></script>
   <script src="js/results-screen.js"></script>
+  <script src="js/fetcher.js"></script>
 </body>
 </html>
