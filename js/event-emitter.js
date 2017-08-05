@@ -12,10 +12,13 @@ EventEmitter.prototype.on = function( event, fn ) {
   this.events[event].push(fn);
 }
 
-EventEmitter.prototype.emit = function( event ) {
+EventEmitter.prototype.emit = function() {
+  const event = arguments[0];
+  const params = Array.prototype.slice.call( arguments, 1 );
+
   if (!this.events[event]) return;
 
-  this.events[event].forEach( eventcb => {
-    eventcb();
+  this.events[event].forEach( callback => {
+    callback.apply( null, params );
   } );
 }
