@@ -1,7 +1,8 @@
 "use strict";
 
 /*
- *  This module fetches information from the relevant APIs
+ * The "engine" pulls information from the APIs and generates
+ * a beer recommendation
  */
 (function($, eventEmitter) {
 
