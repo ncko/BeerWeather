@@ -9,12 +9,17 @@
   eventEmitter.on('coordinates-received', coordinatesReceived);
   eventEmitter.on('forecast-received', forecastReceived);
   eventEmitter.on('beer-list-received', beerlistReceived);
+  eventEmitter.on('beer-recommendations-ready', hideScreen);
 
   const $SCREEN = $('#js-loading-screen');
   const $PROGRESS_LIST = $('#js-loading-list');
 
   function showScreen() {
     $SCREEN.show();
+  }
+
+  function hideScreen() {
+    $SCREEN.hide();
   }
 
   function coordinatesReceived(){

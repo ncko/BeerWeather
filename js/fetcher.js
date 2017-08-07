@@ -8,6 +8,7 @@
   eventEmitter.on('submit-location', fetchCoordinates);
   eventEmitter.on('coordinates-received', fetchForecast);
   eventEmitter.on('forecast-received', fetchBeer);
+  eventEmitter.on('beer-list-received', generateBeerRecommendation);
 
   function fetchCoordinates( location ) {
     console.log('fetchCoordinates');
@@ -28,6 +29,10 @@
     setTimeout( () => {
       eventEmitter.emit('beer-list-received');
     }, 3000);
+  }
+
+  function generateBeerRecommendation(){
+    eventEmitter.emit('beer-recommendations-ready');
   }
 
 
