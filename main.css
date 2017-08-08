@@ -120,13 +120,10 @@ button:hover, button:focus {
   margin: 3rem 0;
 }
 
-.another-recommendation-btn {
-  float: right;
-}
-
 .btn-panel {
   margin: 0 auto;
   max-width: 500px;
+  text-align: center;
 }
 
 .done {
