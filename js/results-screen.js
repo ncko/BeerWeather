@@ -18,11 +18,7 @@
   }
 
   function showResults( beerList ) {
-    // let beer = beerList[ Math.floor( Math.random() * beerList.length) ];
-    let beer = {
-      title: 'Fake Beer',
-      description: 'Rich, decadent and full-bodied. The intense, roasted malt flavor is derived from two types of chocolate malt and raw cocoa nibs. Whole vanilla beans introduced post-fermentation adds complexity and enhances the desert-like quality.'
-    };
+    let beer = beerList[ Math.floor( Math.random() * beerList.length) ];
     populateBeerArticle( beer );
     $SCREEN.show();
   }
