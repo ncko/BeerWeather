@@ -129,3 +129,12 @@ button:hover, button:focus {
 .done {
   color: #000;
 }
+
+.beer-list {
+  list-style: none
+}
+
+.beer-list li {
+  background-color: #eee;
+  padding: 0.75rem;
+}
