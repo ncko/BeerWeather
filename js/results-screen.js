@@ -6,42 +6,48 @@
   eventEmitter.on('beer-recommendations-ready', showResults);
 
   const $SCREEN = $('#js-results-screen');
-  const $BEER_TITLE = $('#js-beer-title');
-  const $BEER_DESCRIPTION = $('#js-beer-description');
+  const $BEER_LIST = $('#js-beer-list');
 
   const $START_AGAIN_BTN = $('#js-start-again-btn');
   const $LOAD_NEW_BTN = $('#js-load-recommendation-btn');
 
-  let beerList = null;
-
   function init() {
     $START_AGAIN_BTN.on('click', startAgain);
-    $LOAD_NEW_BTN.on('click', loadNewBeer);
   }
 
-  function showResults( beers ) {
-    beerList = beers;
-    loadNewBeer();
+  function showResults( weather, beers, beerStyle ) {
+
+    // prepend weather information to $SCREEN
+    let fahrenheit = Math.round(((weather.main.temp - 273) * (9/5)) + 32); // convert kelvin to fahrenheit and round it
+    $SCREEN.prepend( weatherParagraph( weather.name, fahrenheit, beerStyle.name ) );
+
+    //add beerListItems to $BEER_LIST
+    let beerListMarkup = beers.map( beer => {
+      return beerListItem( beer.name, beer.description );
+    } ).join('');
+
+    $BEER_LIST.html( beerListMarkup );
+
     $SCREEN.show();
   }
 
-  function loadNewBeer() {
-    let beer = beerList[ Math.floor( Math.random() * beerList.length ) ];
-    populateBeerArticle( beer );
+  function weatherParagraph(cityName, temp, beerStyle) {
+    return `<p class="lead">In ${cityName} it is about ${temp} degrees. 
+    In times like these I reach for a ${beerStyle}. Here are some options below:</p>`;
   }
 
-  function populateBeerArticle( beer ) {
-    $BEER_TITLE.text(beer.name);
-    $BEER_DESCRIPTION.text(beer.description);
+  function beerListItem(title, description) {
+    if (!description) description = '';
+
+    return `<li>
+            <h3 class="beer-title">${title}</h3>
+            <p class="beer-description">${description}</p>
+          </li>`;
   }
 
   function startAgain(){
     eventEmitter.emit('start-again');
     $SCREEN.hide();
-    populateBeerArticle({
-      name: '',
-      description: ''
-    });
   }
 
 })(jQuery, window.eventEmitter);
