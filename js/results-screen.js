@@ -12,24 +12,36 @@
   const $START_AGAIN_BTN = $('#js-start-again-btn');
   const $LOAD_NEW_BTN = $('#js-load-recommendation-btn');
 
+  let beerList = null;
+
   function init() {
     $START_AGAIN_BTN.on('click', startAgain);
     $LOAD_NEW_BTN.on('click', loadNewBeer);
   }
 
-  function showResults( beerList ) {
-    let beer = beerList[ Math.floor( Math.random() * beerList.length) ];
-    populateBeerArticle( beer );
+  function showResults( beers ) {
+    beerList = beers;
+    loadNewBeer();
     $SCREEN.show();
   }
 
+  function loadNewBeer() {
+    let beer = beerList[ Math.floor( Math.random() * beerList.length ) ];
+    populateBeerArticle( beer );
+  }
+
   function populateBeerArticle( beer ) {
-    $BEER_TITLE.text(beer.title);
+    $BEER_TITLE.text(beer.name);
     $BEER_DESCRIPTION.text(beer.description);
   }
 
-  function startAgain(){ console.log('start again'); }
-
-  function loadNewBeer(){ console.log('load new beer'); }
+  function startAgain(){
+    eventEmitter.emit('start-again');
+    $SCREEN.hide();
+    populateBeerArticle({
+      name: '',
+      description: ''
+    });
+  }
 
 })(jQuery, window.eventEmitter);
