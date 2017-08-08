@@ -8,11 +8,17 @@
   eventEmitter.on('submit-location', showScreen);
   eventEmitter.on('coordinates-received', coordinatesReceived);
   eventEmitter.on('forecast-received', forecastReceived);
-  eventEmitter.on('beer-list-received', beerlistReceived);
+  eventEmitter.on('beer-styles-received', beerlistReceived);
   eventEmitter.on('beer-recommendations-ready', hideScreen);
+  eventEmitter.on('start-again', init);
 
   const $SCREEN = $('#js-loading-screen');
   const $PROGRESS_LIST = $('#js-loading-list');
+
+  function init() {
+    hideScreen();
+    $PROGRESS_LIST.find('li').removeClass('done');
+  }
 
   function showScreen() {
     $SCREEN.show();
