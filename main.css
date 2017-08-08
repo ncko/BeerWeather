@@ -28,6 +28,10 @@ header {
   text-align: center;
 }
 
+main { 
+  margin-bottom: 1.5rem;
+}
+
 section.loading-screen-section {
   text-align: center;
 }
