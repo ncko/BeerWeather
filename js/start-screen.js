@@ -6,6 +6,7 @@
 (function($, eventEmitter) {
 
   eventEmitter.on('init-app', init);
+  eventEmitter.on('start-again', init);
 
   const $SCREEN = $('#js-start-screen');
   const $FORM = $('#js-form');
@@ -16,6 +17,8 @@
    *  - Hook up a submit event
    */
   function init() {
+    $SCREEN.show();
+
     $FORM.find('input:text').prop('disabled', false);
 
     $FORM.submit( event => {
@@ -33,11 +36,13 @@
    *    - tell the user to try again
    */
   function submitForm() {
-    const input = $FORM.find('input:text').val().trim();
+    const input = $FORM.find('input:text');
+    const val = input.val().trim();
 
-    if (validateInput(input)) {
+    if (validateInput(val)) {
       $SCREEN.hide();
-      eventEmitter.emit('submit-location', input);
+      input.val('');
+      eventEmitter.emit('submit-location', val);
     } else {
       $FORM.find('input:text').val('');
       showInvalidInputError();
