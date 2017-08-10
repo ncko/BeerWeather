@@ -8,6 +8,13 @@ const ENGINE = (function($, eventEmitter) {
   eventEmitter.on('beer-data-ready', generateBeerRecommendations);
   eventEmitter.on('start-again', init);
 
+  const GEOCODE_URL = 'https://geocode.xyz/?scantext=${location}&json=1';
+  const GEOCODE_DEFAULT_QUERY = { json: 1 };
+  const FORECAST_URL = 'https://api.openweathermap.org/data/2.5/weather';
+  const FORECAST_DEFAULT_QUERY = {
+    appid: '208b09d63f6454839e7f821fad7776a0'
+  };
+
   const DATA = {};
 
   function init() {
@@ -16,21 +23,20 @@ const ENGINE = (function($, eventEmitter) {
   }
 
   function fetchCoordinates( location ) {
-    const url = window.encodeURI(`https://geocode.xyz/?scantext=${location}&json=1`);
-    $.getJSON( url, {}, data => {
+    const query = Object.assign( GEOCODE_DEFAULT_QUERY, { scantext: location } );
+
+    $.getJSON( GEOCODE_URL, query, data => {
       eventEmitter.emit('coordinates-received', data.latt, data.longt);
     });
   }
 
   function fetchForecast( latitude, longitude ){
-    const url = 'https://api.openweathermap.org/data/2.5/weather';
-    const DEFAULT_QUERY = {
-      appid: '208b09d63f6454839e7f821fad7776a0',
+    const query = Object.assign( FORECAST_DEFAULT_QUERY, {
       lat: latitude,
       lon: longitude
-    };
+    } );
 
-    $.getJSON(url, DEFAULT_QUERY, data => {
+    $.getJSON(FORECAST_URL, query, data => {
       submitData('weather', data);
       eventEmitter.emit('forecast-received', data);
     });
