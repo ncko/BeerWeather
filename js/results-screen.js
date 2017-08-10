@@ -11,6 +11,8 @@
   const $START_AGAIN_BTN = $('#js-start-again-btn');
   const $LOAD_NEW_BTN = $('#js-load-recommendation-btn');
 
+  const WEATHER_PARAGRAPHS_CLASS = '.js-weather-info';
+
   function init() {
     $START_AGAIN_BTN.on('click', startAgain);
   }
@@ -32,7 +34,7 @@
   }
 
   function weatherParagraph(cityName, temp, beerStyle) {
-    return `<p class="lead">In ${cityName} it is about ${temp} degrees. 
+    return `<p class="lead js-weather-info">In ${cityName} it is about ${temp} degrees. 
     In times like these I reach for a ${beerStyle}. Here are some options below:</p>`;
   }
 
@@ -47,6 +49,8 @@
 
   function startAgain(){
     eventEmitter.emit('start-again');
+    $(WEATHER_PARAGRAPHS_CLASS).remove();
+    $BEER_LIST.html('');
     $SCREEN.hide();
   }
 
