@@ -30,3 +30,10 @@ EventEmitter.prototype.removeListener = function( event, fn ) {
     return (eventCB !== fn);
   } );
 }
+
+EventEmitter.prototype.once = function( event, fn ) {
+  this.on(event, fn);
+  this.on(event, () => {
+    this.removeListener(event, fn);
+  });
+}
