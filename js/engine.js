@@ -61,7 +61,7 @@ const ENGINE = (function($, eventEmitter) {
     // Uses JSONP to call FETCHER.beerCB()
     // FETCHER.beerCB emits 'beer-list-received'
     fetchBeersByStyleID( style.id );
-    eventEmitter.on('beer-list-received', data => {
+    eventEmitter.once('beer-list-received', data => {
       eventEmitter.emit('beer-recommendations-ready', weather, data.data, style );
     } );
 
