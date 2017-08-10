@@ -32,8 +32,12 @@ EventEmitter.prototype.removeListener = function( event, fn ) {
 }
 
 EventEmitter.prototype.once = function( event, fn ) {
+  var self = this;
+  function g() {
+    self.removeListener(event, fn);
+    self.removeListener(event, g);
+  }
+
   this.on(event, fn);
-  this.on(event, () => {
-    this.removeListener(event, fn);
-  });
+  this.on(event, g);
 }
