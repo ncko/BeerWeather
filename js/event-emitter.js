@@ -22,3 +22,11 @@ EventEmitter.prototype.emit = function() {
     callback.apply( null, params );
   } );
 }
+
+EventEmitter.prototype.removeListener = function( event, fn ) {
+  if (!this.events[event]) return;
+
+  this.events[event] = this.events[event].filter( eventCB => {
+    return (eventCB !== fn);
+  } );
+}
