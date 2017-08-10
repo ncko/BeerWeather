@@ -42,6 +42,7 @@
     if (validateInput(val)) {
       $SCREEN.hide();
       input.val('');
+      $FORM.find('input:text').prop('disabled', false);
       eventEmitter.emit('submit-location', val);
     } else {
       $FORM.find('input:text').val('');
