@@ -15,6 +15,9 @@ const ENGINE = (function($, eventEmitter) {
     appid: '208b09d63f6454839e7f821fad7776a0'
   };
 
+  const TEMP_RANGE_UPPER = 100;
+  const TEMP_RANGE_LOWER = 30;
+
   const DATA = {};
 
   function init() {
@@ -60,17 +63,66 @@ const ENGINE = (function($, eventEmitter) {
     document.getElementsByTagName("head")[0].appendChild(tag);
   }
 
-  function generateBeerRecommendations(weather, beer){
-    let style = beer.data[ Math.floor(Math.random() * beer.data.length) ];
+  function generateBeerRecommendations(weatherData, beerData){
+    let beerStyles = beerData.data;
+    let temperature = Math.round(((weatherData.main.temp - 273) * (9/5)) + 32);
 
+    // helper function for getting the average SRM of a beer style
+    function averageSRM(style) {
+      return (parseFloat(style.srmMin) + parseFloat(style.srmMax)) / 2;
+    }
+
+    // filter out beer with not enough information
+    beerStyles = beerStyles.filter( style => {
+      let srm = averageSRM(style);
+      return !isNaN(srm);
+    } );
+
+    // sort beer styles by their average SRM
+    beerStyles.sort( (a, b) => {
+      let srmA = averageSRM(a);
+      let srmB = averageSRM(b);
+      return srmA - srmB;
+    } );
+
+    let srmRangeLower = averageSRM(beerStyles[0]);
+    let srmRangeHigher = averageSRM(beerStyles[ beerStyles.length - 1 ]);
+    let srmRange = srmRangeHigher - srmRangeLower;
+    let tempRange = TEMP_RANGE_UPPER - TEMP_RANGE_LOWER; // degrees fahrenheit
+
+    let tempPercentage = (temperature - TEMP_RANGE_LOWER) / tempRange; // what percentage of temp range is temperature?
+    let targetSRM = tempPercentage * srmRange; // what number is tempPercentage% of srmRange?
+    targetSRM = srmRange - targetSRM; // invert - the higher the temperature, the lower the SRMs should be
+    targetSRM += srmRangeLower; // adjust to within the actual range of possible SRMs
+
+
+    // find the lowest difference between targetSRM and the closest average SRM value
+    let lowestDistance = 999999;
+
+    for (let i = 0; i < beerStyles.length; i++) {
+      if (lowestDistance > Math.abs(averageSRM(beerStyles[i]) - targetSRM)) {
+        lowestDistance = Math.abs(averageSRM(beerStyles[i]) - targetSRM);
+      }
+    }
+
+    // collect the beerStyles with the closest average SRM value
+    let selectedStyles = [];
+
+    for (let i = 0; i < beerStyles.length; i++) {
+      if ( Math.abs(averageSRM(beerStyles[i]) - targetSRM) === lowestDistance ) {
+        selectedStyles.push( beerStyles[i] );
+      }
+    }
+
+    // select a beer style randomly from the selected styles
+    let selectedBeerStyle = selectedStyles[ Math.floor( Math.random() * selectedStyles.length ) ];
 
     // Uses JSONP to call FETCHER.beerCB()
     // FETCHER.beerCB emits 'beer-list-received'
-    fetchBeersByStyleID( style.id );
+    fetchBeersByStyleID( selectedBeerStyle.id );
     eventEmitter.once('beer-list-received', data => {
-      eventEmitter.emit('beer-recommendations-ready', weather, data.data, style );
+      eventEmitter.emit('beer-recommendations-ready', weather, data.data, selectedBeerStyle );
     } );
-
   }
 
   function submitData(type, data) {
