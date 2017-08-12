@@ -96,17 +96,6 @@ button:hover, button:focus {
   display: none;
 }
 
-.media:after {
-  content: '';
-  display: table;
-  clear: both;
-}
-
-.media__img {
-  float: left;
-  margin-right: 1.5rem;
-}
-
 /* components */
 .loading-list {
   font-size: 1.25rem;
