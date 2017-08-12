@@ -23,6 +23,9 @@
     let fahrenheit = Math.round(((weather.main.temp - 273) * (9/5)) + 32); // convert kelvin to fahrenheit and round it
     $SCREEN.prepend( weatherParagraph( weather.name, fahrenheit, beerStyle.name ) );
 
+    // filter out beers without descriptions
+    beers = beers.filter( beer => beer.description );
+
     //add beerListItems to $BEER_LIST
     let beerListMarkup = beers.map( beer => {
       return beerListItem( beer.name, beer.description );
