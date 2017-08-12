@@ -1,9 +1,12 @@
+/*
+ * GENERIC STYLES
+ */
 *, *:before, *:after {
   box-sizing: border-box;
 }
 
-/* Consistent vertical rhythm on all block level elements used */
-h1, h2, p, li, ul, form {
+/* Consistent vertical rhythm */
+h1, h2, p, li, ul, form, main {
   margin: 0;
   padding: 0;
   margin-bottom: 1.5rem;
@@ -12,32 +15,18 @@ h1, h2, p, li, ul, form {
 li {
   margin-left: 1.5rem;
 }
+ 
 
-/* base element styles */
+/*
+ * ELEMENT STYLES
+ */
 body {
   font: 16px/1.5 sans-serif;
   padding-top: 3rem;
 }
 
-.wrapper {
-  max-width: 960px;
-  margin: 0 auto;
-}
-
 header {
   text-align: center;
-}
-
-main { 
-  margin-bottom: 1.5rem;
-}
-
-section.loading-screen-section {
-  text-align: center;
-}
-
-.sticky-footer { /* pushes the footer down to the bottom of the page */
-  min-height: calc(100vh - 7.5rem);
 }
 
 footer {
@@ -45,30 +34,31 @@ footer {
   height: 2.5rem;
 }
 
-.form {
+/* form elements */
+form {
   margin-top: 6rem;
   text-align: center;
 }
 
-  .form legend {
-    font-size: 1.5rem;
-  }
+legend {
+  font-size: 1.5rem;
+}
 
-  .form fieldset {
-    border: 0;
-    font-size: 0;
-  }
+fieldset {
+  border: 0;
+  font-size: 0;
+}
 
-  .form input[type="text"] {
-    padding: 0.75rem;
-    width: 100%;
-    max-width: 300px;
-    font-size: 1rem;
-  }
+input[type="text"] {
+  padding: 0.75rem;
+  width: 100%;
+  max-width: 300px;
+  font-size: 1rem;
+}
 
-  .form button[type="submit"] {
-    font-size: 1rem;
-  }
+button[type="submit"] {
+  font-size: 1rem;
+}
 
 button {
   background-color: black;
@@ -86,17 +76,31 @@ button:hover, button:focus {
 }
 
 
-/* objects */
-.lead {
+/*
+ * SPECIAL STYLES
+ */
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+
+section.loading-screen-section {
+  text-align: center;
+}
+
+
+.sticky-footer { /* pushes the footer down to the bottom of the page */
+  min-height: calc(100vh - 7.5rem);
+}
+
+
+p.lead {
   font-size: 1.25rem;
   text-align: center;
 }
 
-.hidden {
-  display: none;
-}
 
-/* components */
 .loading-list {
   font-size: 1.25rem;
   text-align: left;
@@ -105,9 +109,10 @@ button:hover, button:focus {
   color: #888;
 }
 
-.beer-info {
-  margin: 3rem 0;
+.loading-list > .done {
+  color: #000;
 }
+
 
 .btn-panel {
   margin: 0 auto;
@@ -115,9 +120,11 @@ button:hover, button:focus {
   text-align: center;
 }
 
-.done {
-  color: #000;
+
+article.beer-info {
+  margin: 3rem 0;
 }
+
 
 .beer-list {
   list-style: none
@@ -126,4 +133,12 @@ button:hover, button:focus {
 .beer-list li {
   background-color: #eee;
   padding: 0.75rem;
+}
+
+
+/*
+ * UTILITY CLASSES
+ */
+.hidden {
+  display: none;
 }
