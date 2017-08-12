@@ -121,7 +121,7 @@ const ENGINE = (function($, eventEmitter) {
     // FETCHER.beerCB emits 'beer-list-received'
     fetchBeersByStyleID( selectedBeerStyle.id );
     eventEmitter.once('beer-list-received', data => {
-      eventEmitter.emit('beer-recommendations-ready', weather, data.data, selectedBeerStyle );
+      eventEmitter.emit('beer-recommendations-ready', weatherData, data.data, selectedBeerStyle );
     } );
   }
 
