@@ -39,13 +39,13 @@
     const input = $FORM.find('input:text');
     const val = input.val().trim();
 
+    input.val('');
+
     if (validateInput(val)) {
       $SCREEN.hide();
-      input.val('');
-      $FORM.find('input:text').prop('disabled', true);
+      input.prop('disabled', true);
       eventEmitter.emit('submit-location', val);
     } else {
-      $FORM.find('input:text').val('');
       showInvalidInputError();
     }
   }
