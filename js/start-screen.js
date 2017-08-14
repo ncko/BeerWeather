@@ -18,13 +18,8 @@
    */
   function init() {
     $SCREEN.show();
-
     $FORM.find('input:text').prop('disabled', false);
-
-    $FORM.one( 'submit', event => {
-      event.preventDefault();
-      submitForm();
-    } );
+    addSubmitListener();
   }
 
   /*
@@ -47,6 +42,7 @@
       eventEmitter.emit('submit-location', val);
     } else {
       showInvalidInputError();
+      addSubmitListener();
     }
   }
 
@@ -62,6 +58,16 @@
    */
   function showInvalidInputError() {
     $STATUS_PANEL.html('<p class="error">Your input is invalid. Try Again</p>');
+  }
+
+  /*
+   *  Add 'submit' listener to the form
+   */
+  function addSubmitListener() {
+    $FORM.one( 'submit', event => {
+      event.preventDefault();
+      submitForm();
+    });
   }
 
 })(jQuery, window.eventEmitter);
