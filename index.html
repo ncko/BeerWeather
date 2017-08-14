@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="viewport" content="width=device-width, user-scalable=no, maximum-scale=2.0, minimum-scale=1.0">
   <title>BeerWeather</title>
   <meta name="description" content="Match your local weather to a good beer.">
   <link href="https://fonts.googleapis.com/css?family=Bitter:700|Lato:400,700" rel="stylesheet">
@@ -18,7 +18,7 @@
     </div>
   </header>
 
-  <main role="main">
+  <main role="main" aria-live="assertive">
     
     <section id="js-start-screen">
       <div class="wrapper">
@@ -27,7 +27,7 @@
         <form id="js-form" class="form" action="" role="form">
           <fieldset>
             <legend>Where Are You?</legend>
-            <input id="js-input" type="text" name="place" placeholder="City, State" disabled>
+            <input id="js-input" type="text" name="place" placeholder="City, State" title="City, State" disabled>
             <button type="submit">Submit</button>
           </fieldset>
         </form>
