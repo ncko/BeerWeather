@@ -12,7 +12,7 @@ This app takes a string representing a location, finds the weather in that locat
 * CSS3
 * JavaScript
 * jQuery 3.2.1
-* [OpenBreweryDP API](http://www.brewerydb.com/developers)
+* [OpenBreweryDB API](http://www.brewerydb.com/developers)
 * [OpenWeather API](http://openweathermap.org/api)
 * [Geocode.xyz API](https://geocode.xyz/)
 * [json2jsonp.com](http://json2jsonp.com/)
