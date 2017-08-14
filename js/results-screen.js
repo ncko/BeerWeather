@@ -10,10 +10,7 @@
 
   const $SCREEN = $('#js-results-screen');
   const $BEER_LIST = $('#js-beer-list');
-
   const $START_AGAIN_BTN = $('#js-start-again-btn');
-  const $LOAD_NEW_BTN = $('#js-load-recommendation-btn');
-
   const WEATHER_PARAGRAPHS_CLASS = '.js-weather-info';
 
   /*
