@@ -19,6 +19,7 @@
   function init() {
     $SCREEN.show();
     $FORM.find('input:text').prop('disabled', false);
+    $STATUS_PANEL.html('');
     addSubmitListener();
   }
 
