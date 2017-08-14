@@ -36,7 +36,7 @@ header {
 
 footer {
   text-align: center;
-  background-color: #6A6A6A;
+  background-color: #424242;
   padding: 0.375rem; /* 0.75rem / 2 */
   color: #fff;
 }
@@ -57,7 +57,7 @@ h3 {
 
 /* anchors */
 a {
-  color: #ED823C;
+  color: #FA985C;
   text-decoration: none;
 }
 
@@ -66,7 +66,7 @@ a:hover, a:focus {
 }
 
 a:visited {
-  color: #CC7034;
+  text-decoration: underline;
 }
 
 footer p {
