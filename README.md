@@ -20,6 +20,7 @@ This app takes a string representing a location, finds the weather in that locat
 I also created an EventEmitter object for use in the event based architecture of the app.
 
 ## Possible Improvements
+* Get rid of the JSONP requests by creating a backend that contacts the OpenBreweryDB API
 * Develop a more efficient algorithm for the generating recommendations
 * Use a more dependable method for finding the users coordinates
 * On the results screen, allow the user to use the back button to go back to the start screen
