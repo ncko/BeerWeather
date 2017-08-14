@@ -1,5 +1,9 @@
 "use strict";
 
+/*
+ *  ENGINE fetches data from the relevant APIs and uses the data
+ *  to generate a list of beers
+ */
 const ENGINE = (function($, eventEmitter) {
 
   eventEmitter.on('submit-location', fetchCoordinates);
@@ -20,11 +24,18 @@ const ENGINE = (function($, eventEmitter) {
 
   const DATA = {};
 
+  /*
+   *  Delete keys from DATA
+   */
   function init() {
     delete DATA.weather;
     delete DATA.beerStyles;
   }
 
+  /*
+   *  Takes a string representing a location and uses AJAX to send it to the
+   *  Geocode.xyz api, sets a callback that receives the latitude and longitude
+   */
   function fetchCoordinates( location ) {
     const query = Object.assign( GEOCODE_DEFAULT_QUERY, { scantext: location } );
 
@@ -33,6 +44,10 @@ const ENGINE = (function($, eventEmitter) {
     });
   }
 
+  /*
+   *  Uses AJAX to send latitude and longitude to the OpenWeatherAPI and receives
+   *  the current forecast
+   */
   function fetchForecast( latitude, longitude ){
     const query = Object.assign( FORECAST_DEFAULT_QUERY, {
       lat: latitude,
@@ -45,6 +60,10 @@ const ENGINE = (function($, eventEmitter) {
     });
   }
 
+  /*
+   *  Uses JSONP through the json2jsonp.com app, and gets a list of Beer Styles from the BreweryDB API
+   *  The callback for the JSONP request is ENGINE.beerStyleCB
+   */
   function fetchBeerStyles(){
     const beerURL = encodeURIComponent('http://api.brewerydb.com/v2/styles/?key=8a9ed8ea98f0e79ee32f70659adfd782');
     const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerStylesCB`;
@@ -54,6 +73,10 @@ const ENGINE = (function($, eventEmitter) {
     document.getElementsByTagName("head")[0].appendChild(tag);
   }
 
+  /*
+   *  Uses JSONP through the json2jsonp.com app, and fetches a list of beers with the provided StyleID
+   *  from the BreweryDB API. The callback for the JSONP request is ENGINE.beerCB
+   */
   function fetchBeersByStyleID( id, fn ) {
     const beerURL = encodeURIComponent(`http://api.brewerydb.com/v2/beers/?key=8a9ed8ea98f0e79ee32f70659adfd782&styleId=${id}`);
     const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerCB`;
@@ -63,8 +86,20 @@ const ENGINE = (function($, eventEmitter) {
     document.getElementsByTagName("head")[0].appendChild(tag);
   }
 
+  /*  If it is hot, recommend a light beer. If it is cold, recommend a dark beer.
+   *  See below for more details:
+   *
+   *  1.) Sort the list of beer styles by average SRM value (SRM = beer darkness)
+   *  2.) Find the ratio of the current temperature and the range of temperatures between
+   *      TEMP_RANGE_LOWER and TEMP_RANGE_UPPER. => "tempPercentage"
+   *  3.) Produce a "targetSRM" that has the same ratio as tempPercentage to
+   *      between the lowest and highest SRM values
+   *  4.) Get a list of the beer styles with the closest average SRM values to targetSRM
+   *  5.) Pick one randomly out of that list
+   */
   function generateBeerRecommendations(weatherData, beerData){
     let beerStyles = beerData.data;
+    // kelvin to fahrenheit
     let temperature = Math.round(((weatherData.main.temp - 273) * (9/5)) + 32);
 
     // helper function for getting the average SRM of a beer style
@@ -78,25 +113,36 @@ const ENGINE = (function($, eventEmitter) {
       return !isNaN(srm);
     } );
 
-    // sort beer styles by their average SRM
+    /*
+     *  1.) Sort the list of beer styles by average SRM value (SRM = beer darkness)
+     */
     beerStyles.sort( (a, b) => {
       let srmA = averageSRM(a);
       let srmB = averageSRM(b);
       return srmA - srmB;
     } );
 
+    /*
+     *  2.) Find the ratio of the current temperature and the range of temperatures between
+     *      TEMP_RANGE_LOWER and TEMP_RANGE_UPPER. => "tempPercentage"
+     */
     let srmRangeLower = averageSRM(beerStyles[0]);
     let srmRangeHigher = averageSRM(beerStyles[ beerStyles.length - 1 ]);
     let srmRange = srmRangeHigher - srmRangeLower;
     let tempRange = TEMP_RANGE_UPPER - TEMP_RANGE_LOWER; // degrees fahrenheit
-
     let tempPercentage = (temperature - TEMP_RANGE_LOWER) / tempRange; // what percentage of temp range is temperature?
+    
+    /*
+     *  3.) Produce a "targetSRM" that has the same ratio as tempPercentage to
+     *      between the lowest and highest SRM values
+     */
     let targetSRM = tempPercentage * srmRange; // what number is tempPercentage% of srmRange?
     targetSRM = srmRange - targetSRM; // invert - the higher the temperature, the lower the SRMs should be
     targetSRM += srmRangeLower; // adjust to within the actual range of possible SRMs
 
-
-    // find the lowest difference between targetSRM and the closest average SRM value
+    /*
+     *  4.) Get a list of the beer styles with the closest average SRM values to targetSRM
+     */
     let lowestDistance = 999999;
 
     for (let i = 0; i < beerStyles.length; i++) {
@@ -114,7 +160,9 @@ const ENGINE = (function($, eventEmitter) {
       }
     }
 
-    // select a beer style randomly from the selected styles
+    /*
+     *  5.) Pick one randomly out of that list
+     */
     let selectedBeerStyle = selectedStyles[ Math.floor( Math.random() * selectedStyles.length ) ];
 
     // Uses JSONP to call FETCHER.beerCB()
@@ -125,6 +173,12 @@ const ENGINE = (function($, eventEmitter) {
     } );
   }
 
+  /*
+   *  Assigns data to DATA[type].
+   *  If DATA['weather'] and DATA['beerStyles'] have both been assigned
+   *  then it emits 'beer-data-ready' and passes.
+   *  This triggers 'generateBeerRecommendations'
+   */
   function submitData(type, data) {
     if (type === 'weather' || type === 'beerStyles') {
       DATA[type]=data;
@@ -134,6 +188,9 @@ const ENGINE = (function($, eventEmitter) {
       eventEmitter.emit('beer-data-ready', DATA.weather, DATA.beerStyles);
   }
 
+  /*
+   *  Callback functions for JSONP requests
+   */
   return {
     beerStylesCB: function( data ) {
       submitData('beerStyles', data);

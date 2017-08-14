@@ -1,7 +1,7 @@
 "use strict";
 
 /*
- *  This module manages the progress section
+ *  This module manages the progress screen
  */
 (function($, eventEmitter) {
 
@@ -15,6 +15,10 @@
   const $SCREEN = $('#js-loading-screen');
   const $PROGRESS_LIST = $('#js-loading-list');
 
+  /*
+   *  Make sure the section is hidden and remove .done
+   *  from the progress list items
+   */
   function init() {
     hideScreen();
     $PROGRESS_LIST.find('li').removeClass('done');

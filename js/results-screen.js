@@ -1,5 +1,8 @@
 "use strict";
 
+/*
+ *  This module manages the results screen
+ */
 (function($, eventEmitter) {
 
   eventEmitter.on('init-app', init);
@@ -13,10 +16,17 @@
 
   const WEATHER_PARAGRAPHS_CLASS = '.js-weather-info';
 
+  /*
+   *  Add click event listener to the "start again" button
+   */
   function init() {
     $START_AGAIN_BTN.on('click', startAgain);
   }
 
+  /*
+   *  - Prepend paragraph
+   *  - Add list items w/ beer info to the BEER_LIST ul
+   */
   function showResults( weather, beers, beerStyle ) {
 
     // prepend weather information to $SCREEN
@@ -36,11 +46,17 @@
     $SCREEN.show();
   }
 
+  /*
+   *  generates markup for the paragraph that gets prepended to the section
+   */
   function weatherParagraph(cityName, temp, beerStyle) {
     return `<p class="lead js-weather-info">In ${cityName} it is about ${temp} degrees. 
     In times like these I reach for a ${beerStyle}. Here are some options below:</p>`;
   }
 
+  /*
+   *  Generates markup for a beer list item
+   */
   function beerListItem(title, description) {
     if (!description) description = '';
 
@@ -50,6 +66,11 @@
           </li>`;
   }
 
+  /*
+   *  - Emit 'start-again' event
+   *  - Clear the generated HTML
+   *  - Hide the section
+   */
   function startAgain(){
     eventEmitter.emit('start-again');
     $(WEATHER_PARAGRAPHS_CLASS).remove();
