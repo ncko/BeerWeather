@@ -13,7 +13,7 @@
   const $STATUS_PANEL = $('#js-status-panel');
 
   /*
-   *  - Ready the input to receieve text
+   *  - Ready the input to receive text
    *  - Hook up a submit event
    */
   function init() {
@@ -28,7 +28,7 @@
   }
 
   /*
-   *  - if inpute is valid
+   *  - if input is valid
    *    - hide the starting screen
    *    - emit the 'submit-location' event
    *  - else
