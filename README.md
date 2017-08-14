@@ -1,6 +1,4 @@
 # BeerWeather
-<<<<<<< HEAD
-=======
 
 This app takes a string representing a location, finds the weather in that location, then uses the temperature to recommend a beer.
 
@@ -28,4 +26,3 @@ I also created an EventEmitter object for use in the event based architecture of
 * On the results screen, allow the user to use the back button to go back to the start screen
 * Provide typeahead functionality to the location input
 * Let the user type in a zip code OR city name
->>>>>>> master
