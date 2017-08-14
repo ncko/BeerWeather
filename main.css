@@ -199,3 +199,9 @@ article.beer-info {
 .hidden {
   display: none;
 }
+
+.error {
+  text-align: center;
+  color: #DE451F;
+  font-weight: 700;
+}
