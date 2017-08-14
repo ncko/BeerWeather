@@ -21,7 +21,7 @@
 
     $FORM.find('input:text').prop('disabled', false);
 
-    $FORM.submit( event => {
+    $FORM.one( 'submit', event => {
       event.preventDefault();
       submitForm();
     } );
