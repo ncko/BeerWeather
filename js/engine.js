@@ -165,8 +165,8 @@ const ENGINE = (function($, eventEmitter) {
      */
     let selectedBeerStyle = selectedStyles[ Math.floor( Math.random() * selectedStyles.length ) ];
 
-    // Uses JSONP to call FETCHER.beerCB()
-    // FETCHER.beerCB emits 'beer-list-received'
+    // Uses JSONP to call ENGINE.beerCB()
+    // ENGINE.beerCB emits 'beer-list-received'
     fetchBeersByStyleID( selectedBeerStyle.id );
     eventEmitter.once('beer-list-received', data => {
       eventEmitter.emit('beer-recommendations-ready', weatherData, data.data, selectedBeerStyle );
