@@ -72,6 +72,10 @@ a:visited {
   text-decoration: underline;
 }
 
+img {
+  max-width: 100%;
+}
+
 footer p {
   margin-bottom: 0;
 }
@@ -195,6 +199,7 @@ article.beer-info {
   max-width: 720px;
   border-radius: 6px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 .beer-list li h3 {
@@ -212,13 +217,20 @@ article.beer-info {
   clear: both;
 }
 
-.media-image {
-  float: left;
-}
+@media screen and (min-width: 550px) {
 
-.media-image + .media-body {
-  display: table-cell;
-  padding-left: 1.5rem;
+  .beer-list li {
+    text-align: left;
+  }
+
+  .media-image {
+    float: left;
+  }
+
+  .media-image + .media-body {
+    display: table-cell; /* New block formatting context */
+    padding-left: 1.5rem;
+  }
 }
 
 
