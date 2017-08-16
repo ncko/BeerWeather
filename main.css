@@ -128,6 +128,7 @@ button:hover, button:focus {
 .wrapper {
   max-width: 960px;
   margin: 0 auto;
+  padding: 0.75rem;
 }
 
 
@@ -137,7 +138,7 @@ section.loading-screen-section {
 
 
 .sticky-footer { /* pushes the footer down to the bottom of the page */
-  min-height: calc(100vh - 4.9rem); /* <- magic number */
+  min-height: calc(100vh - 6.4rem); /* <- magic number */
 }
 
 
@@ -188,7 +189,9 @@ article.beer-info {
   background-color: #667A79;
   color: #fff;
   padding: 0.75rem;
-  margin-left: 0;
+  margin: 0 auto;
+  margin-bottom: 1.5rem;
+  max-width: 580px;
   border-radius: 6px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
 }

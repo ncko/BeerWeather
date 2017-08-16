@@ -13,15 +13,12 @@
   <div class="sticky-footer">
 
   <header role="banner">
-    <div class="wrapper">
-      <h1>BeerWeather</h1>
-    </div>
+    <h1>BeerWeather</h1>
   </header>
 
   <main role="main" aria-live="assertive">
     
     <section id="js-start-screen">
-      <div class="wrapper">
         <p class="lead landing-statement">Match your local weather to a good beer.</p>
 
         <form id="js-form" class="form" action="" role="form">
@@ -32,22 +29,18 @@
           </fieldset>
         </form>
         <div id="js-status-panel"></div>
-      </div>
     </section>
 
     <section id="js-loading-screen" class="loading-screen-section hidden" hidden>
-      <div class="wrapper">
         <ul id="js-loading-list" class="loading-list">
           <li id="js-coordinates-received">Coordinates Recieved</li>
           <li id="js-forecast-received">Weather Forecast Received</li>
           <li id="js-beer-list-received">Mapping Beer to Weather</li>
         </ul>
         <p>(This is some sophisticated stuff.)</p>
-      </div>
     </section>
 
-    <section id="js-results-screen" class="hidden" hidden>
-      <div class="wrapper">
+    <section id="js-results-screen" class="wrapper hidden" hidden>
         <article class="beer-info">
           <ul id="js-beer-list" class="beer-list"></ul>
         </article>
@@ -55,7 +48,6 @@
         <div class="btn-panel">
          <button id="js-start-again-btn" class="start-again-btn" type="button">Start Again</button>
         </div>
-      </div>
     </section>
 
   </main>
