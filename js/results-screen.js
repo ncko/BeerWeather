@@ -35,7 +35,7 @@
 
     //add beerListItems to $BEER_LIST
     let beerListMarkup = beers.map( beer => {
-      return beerListItem( beer.name, beer.description );
+      return beerListItem( beer.name, beer.description, beer.labels );
     } ).join('');
 
     $BEER_LIST.html( beerListMarkup );
@@ -54,12 +54,15 @@
   /*
    *  Generates markup for a beer list item
    */
-  function beerListItem(title, description) {
-    if (!description) description = '';
+  function beerListItem(title, description, label) {
+    let imgTag = label && label.medium ? `<img class="media-image" src="${label.medium}" alt="Label for ${title}">` : '';
 
-    return `<li>
+    return `<li class="media">
+            ${imgTag}
+            <div class="media-body">
             <h3 class="beer-title">${title}</h3>
             <p class="beer-description">${description}</p>
+            </div>
           </li>`;
   }
 
