@@ -50,7 +50,7 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-h1 {
+h1, .alpha {
   font-size: 2rem;
 }
 
@@ -148,6 +148,8 @@ p.lead {
 
 p.landing-statement {
   margin-bottom: 4.5rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 p.micro-copy {
