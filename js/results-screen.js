@@ -55,10 +55,10 @@
    *  Generates markup for a beer list item
    */
   function beerListItem(title, description, label) {
-    let imgTag = label && label.medium ? `<img class="media-image" src="${label.medium}" alt="Label for ${title}">` : '';
+    let imgURL = label && label.medium ? label.medium : 'no-label.jpg';
 
     return `<li class="media">
-            ${imgTag}
+            <img class="media-image" src="${imgURL}" alt="Label for ${title}">
             <div class="media-body">
             <h3 class="beer-title">${title}</h3>
             <p class="beer-description">${description}</p>
