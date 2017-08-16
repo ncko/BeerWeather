@@ -22,17 +22,16 @@ li {
  */
 body {
   font: 16px/1.5 'Lato', sans-serif;
-  background-image: radial-gradient(circle, rgba(248, 248, 248, 0.5), rgba(255, 252, 192, 0.8)),
+  background-image: radial-gradient(circle, rgba(256, 256, 256, 0.65), #FFFAD5),
                     url('background.jpg');
   background-position: center;
   background-attachment: fixed;
-  background-color: #fbfce3;
   color: #4a4a4a;
 }
 
 header {
   text-align: center;
-  background-color: #C05611;
+  background-color: #105B63;
   color: #fff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
   margin-bottom: 4.5rem;
@@ -61,7 +60,7 @@ h3 {
 
 /* anchors */
 a {
-  color: #FA985C;
+  color: #FFFAD5;
   text-decoration: none;
 }
 
@@ -106,19 +105,19 @@ input[type="text"] {
 button {
   font-size: 1rem;
   box-shadow: 0 0 4px 0 rgba(134, 134, 134, 0.5);
-  background-color: #007F80;
+  background-color: #BD4932;
   color: white;
-  border: 2px solid #007F80;
+  border: 2px solid #BD4932;
   padding: 0.75rem;
   font-weight: bold;
   text-transform: uppercase;
   box-shadow: 0 0 4px 0 rgba(134, 134, 134, 0.5);
-  transition: background-color 0.2s, color 0.2s;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
 button:hover, button:focus {
-  color: #007F80;
-  background-color: transparent;
+  background-color: #993B29;
+  border-color: #993B29;
 }
 
 
@@ -186,7 +185,7 @@ article.beer-info {
 }
 
 .beer-list li {
-  background-color: #667A79;
+  background-color: #105B63;
   color: #fff;
   padding: 0.75rem;
   margin: 0 auto;
