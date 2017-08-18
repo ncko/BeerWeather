@@ -24,11 +24,11 @@
    *  - Prepend paragraph
    *  - Add list items w/ beer info to the BEER_LIST ul
    */
-  function showResults( weather, beers, beerStyle ) {
+  function showResults( location, weather, beers, beerStyle ) {
 
     // prepend weather information to $SCREEN
     let fahrenheit = Math.round(((weather.main.temp - 273) * (9/5)) + 32); // convert kelvin to fahrenheit and round it
-    $SCREEN.prepend( weatherParagraph( weather.name, fahrenheit, beerStyle.name ) );
+    $SCREEN.prepend( weatherParagraph( location, fahrenheit, beerStyle.name ) );
 
     // filter out beers without descriptions
     beers = beers.filter( beer => beer.description );

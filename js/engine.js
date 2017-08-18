@@ -6,7 +6,7 @@
  */
 const ENGINE = (function($, eventEmitter) {
 
-  eventEmitter.on('submit-location', fetchCoordinates);
+  eventEmitter.on('submit-location', setLocation);
   eventEmitter.on('coordinates-received', fetchForecast);
   eventEmitter.on('forecast-received', fetchBeerStyles);
   eventEmitter.on('beer-data-ready', generateBeerRecommendations);
@@ -24,12 +24,20 @@ const ENGINE = (function($, eventEmitter) {
 
   const DATA = {};
 
+  let location = null;
+
   /*
    *  Delete keys from DATA
    */
   function init() {
     delete DATA.weather;
     delete DATA.beerStyles;
+    location = null;
+  }
+
+  function setLocation( loc ) {
+    location = loc;
+    fetchCoordinates( location );
   }
 
   /*
@@ -169,7 +177,7 @@ const ENGINE = (function($, eventEmitter) {
     // ENGINE.beerCB emits 'beer-list-received'
     fetchBeersByStyleID( selectedBeerStyle.id );
     eventEmitter.once('beer-list-received', data => {
-      eventEmitter.emit('beer-recommendations-ready', weatherData, data.data, selectedBeerStyle );
+      eventEmitter.emit('beer-recommendations-ready', location, weatherData, data.data, selectedBeerStyle );
     } );
   }
 
