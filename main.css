@@ -34,7 +34,7 @@ header {
   background-color: #105B63;
   color: #fff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
-  margin-bottom: 4.5rem;
+  margin-bottom: 3rem;
 }
 
 footer {
@@ -82,7 +82,6 @@ footer p {
 
 /* form elements */
 form {
-  margin-top: 6rem;
   text-align: center;
 }
 
@@ -151,7 +150,7 @@ p.lead {
 }
 
 p.landing-statement {
-  margin-bottom: 4.5rem;
+  margin-bottom: 3rem;
   font-weight: bold;
   text-align: center;
 }
