@@ -34,7 +34,7 @@ header {
   background-color: #105B63;
   color: #fff;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 footer {
@@ -150,7 +150,7 @@ p.lead {
 }
 
 p.landing-statement {
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
   font-weight: bold;
   text-align: center;
 }
