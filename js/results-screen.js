@@ -47,9 +47,10 @@
    *  generates markup for the paragraph that gets prepended to the section
    */
   function weatherParagraph(cityName, temp, beerStyle) {
-    return `<p class="lead js-weather-info">In ${cityName} it is about ${temp} degrees. 
-    In times like these I reach for a ${beerStyle}. Here are some options below:</p>`;
+    return `<p class="lead js-weather-info">In ${cityName} it is about ${temp}
+    degrees. I recommend a ${beerStyle}. Here are some options:</p>`;
   }
+
 
   /*
    *  Generates markup for a beer list item
