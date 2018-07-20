@@ -23,7 +23,8 @@ li {
 body {
   font: 16px/1.5 'Source Sans Pro', sans-serif;
   color: #3D4247;
-  background: linear-gradient(to bottom, #2288E2, #2288E2 12px, #F9FAFA 12px);
+  background: linear-gradient(to bottom, #2288E2, #2288E2 12px, rgba(0,0,0,0) 12px),
+              url('beer-bg.jpg');
   padding-top: 36px;
 }
 
