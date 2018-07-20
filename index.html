@@ -18,13 +18,15 @@
 
   <main role="main" aria-live="assertive">
 
-    <section id="js-start-screen">
+    <section id="js-start-screen" class="wrapper">
 
         <form id="js-form" class="form" action="" role="form">
           <fieldset>
             <legend>Where Are You?</legend>
-            <input id="js-input" type="text" name="place" placeholder="City, State" title="City, State" disabled>
-            <button type="submit">Submit</button>
+            <div class="input-button-panel">
+              <input id="js-input" type="text" name="place" placeholder="City, State" title="City, State" disabled>
+              <button type="submit">Beer Me</button>
+            </div>
           </fieldset>
         </form>
         <div id="js-status-panel"></div>

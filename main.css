@@ -23,7 +23,8 @@ li {
 body {
   font: 16px/1.5 'Source Sans Pro', sans-serif;
   color: #3D4247;
-  background-color: #F9FAFA;
+  background: linear-gradient(to bottom, #2288E2, #2288E2 12px, #F9FAFA 12px);
+  padding-top: 36px;
 }
 
 header {
@@ -47,9 +48,14 @@ h1, .alpha {
   font-size: 2.25rem;
 }
 
+h2 {
+  font-size: 1.75rem;
+}
+
 h3 {
   font-size: 1.5rem;
 }
+
 
 /* anchors */
 a {
@@ -81,20 +87,28 @@ form {
 legend {
   font-size: 1rem;
   font-weight: 600;
+  text-align: left;
+  padding-left: 3px;
 }
 
 fieldset {
   border: 0;
   font-size: 0;
+  display: block;
+  margin: 0 auto;
+  width: 100%;
 }
 
 input[type="text"] {
-  padding: 0.75rem;
+  height: 3rem;
   width: 100%;
   max-width: 300px;
   font-size: 1rem;
   background-color: #fff;
   border: 0;
+  padding: 0.75rem;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
 }
 
 button {
@@ -107,13 +121,10 @@ button {
 
   background-color: #FFC716;
   border: 0;
+  height: 3rem;
   padding: 0.75rem;
-  transition: background-color 0.2s, border-color 0.2s;
-}
-
-button:hover, button:focus {
-  background-color: #993B29;
-  border-color: #993B29;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
 }
 
 
@@ -121,10 +132,25 @@ button:hover, button:focus {
  * SPECIAL STYLES
  */
 .wrapper {
-  max-width: 960px;
+  max-width: 320px;
   margin: 0 auto;
   padding: 0 0.75rem;
 }
+
+.input-button-panel {
+  display: inline-block;
+}
+
+  .input-button-panel input[type="text"] {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 1.5rem;
+  }
+
+  .input-button-panel button {
+    margin: 0;
+    width: 100px;
+  }
 
 
 section.loading-screen-section {
@@ -133,7 +159,7 @@ section.loading-screen-section {
 
 
 .sticky-footer { /* pushes the footer down to the bottom of the page */
-  min-height: calc(100vh - 4.9rem); /* <- magic number */
+  min-height: calc(100vh - 9.4rem); /* <- magic number */
 }
 
 
