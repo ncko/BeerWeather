@@ -15,13 +15,13 @@ h1, h2, h3, p, li, ul, form, main {
 li {
   margin-left: 1.5rem;
 }
- 
+
 
 /*
  * ELEMENT STYLES
  */
 body {
-  font: 16px/1.5 'Lato', sans-serif;
+  font: 16px/1.5 'Source Sans Pro', sans-serif;
   background-image: radial-gradient(circle, rgba(256, 256, 256, 0.65), #FFFAD5),
                     url('background.jpg');
   background-position: center;
@@ -47,15 +47,15 @@ footer {
 /* headings */
 h1, h2, h3 {
   font-family: 'Bitter', sans-serif;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 h1, .alpha {
-  font-size: 2rem;
+  font-size: 2.25rem;
 }
 
 h3 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
 }
 
 /* anchors */
@@ -86,9 +86,8 @@ form {
 }
 
 legend {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 fieldset {
@@ -106,15 +105,17 @@ input[type="text"] {
 }
 
 button {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 700;
   font-size: 1rem;
+  letter-spacing: .3px;
+  text-transform: uppercase;
+  color: white;
+
   box-shadow: 0 0 4px 0 rgba(134, 134, 134, 0.5);
   background-color: #BD4932;
-  color: white;
   border: 2px solid #BD4932;
   padding: 0.75rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  box-shadow: 0 0 4px 0 rgba(134, 134, 134, 0.5);
   transition: background-color 0.2s, border-color 0.2s;
 }
 
