@@ -29,6 +29,7 @@ body {
 
 header {
   text-align: center;
+  margin-bottom: 3rem;
 }
 
 footer {
@@ -164,7 +165,6 @@ button {
   letter-spacing: 1.45px;
   color: rgba(61, 66, 71, 0.55);
   text-transform: uppercase;
-  margin-bottom: 4.5rem;
 }
 
 section.loading-screen-section {
