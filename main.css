@@ -90,7 +90,7 @@ legend {
   font-size: 1rem;
   font-weight: 600;
   text-align: left;
-  padding-left: 3px;
+  padding-left: 1rem;
 }
 
 fieldset {
@@ -98,7 +98,17 @@ fieldset {
   font-size: 0;
   display: block;
   margin: 0 auto;
-  width: 100%;
+  max-width: 320px;
+}
+
+@media screen and (min-width: 600px) {
+  fieldset {
+    max-width: 480px;
+  }
+
+  legend {
+    padding-left: 2.5rem;
+  }
 }
 
 input[type="text"] {
@@ -134,17 +144,17 @@ button {
  * SPECIAL STYLES
  */
 .wrapper {
-  max-width: 320px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 0.75rem;
 }
+
 
 .input-button-panel {
   display: inline-block;
 }
 
   .input-button-panel input[type="text"] {
-    width: 100%;
     margin: 0;
     margin-bottom: 1.5rem;
   }
@@ -153,6 +163,27 @@ button {
     margin: 0;
     width: 100px;
   }
+
+@media screen and (min-width: 600px) {
+
+  .input-button-panel {
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 2px;
+  }
+
+  .input-button-panel input[type="text"]{
+    width: 380px;
+    border-radius: 2px 0 0 2px;
+    box-shadow: none;
+    margin-bottom: 0;
+  }
+
+  .input-button-panel button {
+    border-radius: 0 2px 2px 0;
+    box-shadow: none;
+    vertical-align: bottom;
+  }
+}
 
 .head {
     line-height: 1em;
@@ -174,13 +205,33 @@ section.loading-screen-section {
 
 
 .sticky-footer { /* pushes the footer down to the bottom of the page */
-  min-height: calc(100vh - 9.4rem); /* <- magic number */
+  min-height: calc(100vh - 11.25rem); /* <- magic number */
+}
+
+@media screen and (min-width: 414px) {
+  .sticky-footer {
+    min-height: calc(100vh - 9.8rem);
+  }
+}
+
+@media screen and (min-width: 648px) {
+  .sticky-footer {
+    min-height: calc(100vh - 8.25rem);
+  }
 }
 
 
 p.lead {
   font-size: 1rem;
-  text-align: left;
+}
+
+@media screen and (min-width: 600px) {
+  p.lead {
+    font-size: 1.5rem;
+    max-width: 720px;
+    margin: 0 auto;
+    margin-bottom: 1.5rem;
+  }
 }
 
 p.micro-copy {
