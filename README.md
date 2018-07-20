@@ -2,10 +2,13 @@
 
 This app takes a string representing a location, finds the weather in that location, then uses the temperature to recommend a beer.
 
-## Screenshots
-![Screen shot of the start screen](https://github.com/nicklolsen/BeerWeather/blob/master/ProjectFiles/screenshot.start-screen.jpg "A screen shot of the starting screen")
+## Updated Design
 
-![Screen shot of the results screen](https://github.com/nicklolsen/BeerWeather/blob/master/ProjectFiles/screenshot.results-screen.jpg "A screen shot of the results screen")
+
+### Previous Design
+![Screen shot of the start screen](https://github.com/nicklolsen/BeerWeather/blob/redesign-v2/ProjectFiles/screenshot.start-screen.png "A screen shot of the starting screen")
+
+![Screen shot of the results screen](https://github.com/nicklolsen/BeerWeather/blob/redesign-v2/ProjectFiles/screenshot.results-screen.png "A screen shot of the results screen")
 
 ## Technology Used
 * HTML5
