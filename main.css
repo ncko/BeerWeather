@@ -152,6 +152,20 @@ button {
     width: 100px;
   }
 
+.head {
+    line-height: 1em;
+    margin-bottom: 0;
+}
+
+.subhead {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1.45px;
+  color: rgba(61, 66, 71, 0.55);
+  text-transform: uppercase;
+  margin-bottom: 4.5rem;
+}
 
 section.loading-screen-section {
   text-align: center;
