@@ -1,0 +1,4 @@
+#!/bin/sh
+
+tar -cvf ./server.tar ./server/*
+caprover deploy --tarFile ./server.tar --appName beerweather-api

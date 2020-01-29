@@ -12,6 +12,7 @@ const ENGINE = (function($, eventEmitter) {
   eventEmitter.on('beer-data-ready', generateBeerRecommendations);
   eventEmitter.on('start-again', init);
 
+  const BREW_URL = 'https://beerweather-api.ncko.app';
   const GEOCODE_URL = 'https://geocode.xyz/?scantext=${location}&json=1';
   const GEOCODE_DEFAULT_QUERY = { json: 1 };
   const FORECAST_URL = 'https://api.openweathermap.org/data/2.5/weather';
@@ -69,29 +70,22 @@ const ENGINE = (function($, eventEmitter) {
   }
 
   /*
-   *  Uses JSONP through the json2jsonp.com app, and gets a list of Beer Styles from the BreweryDB API
-   *  The callback for the JSONP request is ENGINE.beerStyleCB
+   *  Gets a list of Beer Styles from the BreweryDB API
    */
   function fetchBeerStyles(){
-    const beerURL = encodeURIComponent('http://api.brewerydb.com/v2/styles/?key=8a9ed8ea98f0e79ee32f70659adfd782');
-    const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerStylesCB`;
-
-    var tag = document.createElement("script");
-    tag.src = jsonpURL;
-    document.getElementsByTagName("head")[0].appendChild(tag);
+      $.getJSON(`${BREW_URL}/styles`, data => {
+        submitData('beerStyles', data);
+        eventEmitter.emit('beer-styles-received');
+      });
   }
 
   /*
-   *  Uses JSONP through the json2jsonp.com app, and fetches a list of beers with the provided StyleID
-   *  from the BreweryDB API. The callback for the JSONP request is ENGINE.beerCB
+   *  Fetches a list of beers with the provided StyleID
    */
   function fetchBeersByStyleID( id, fn ) {
-    const beerURL = encodeURIComponent(`http://api.brewerydb.com/v2/beers/?key=8a9ed8ea98f0e79ee32f70659adfd782&styleId=${id}`);
-    const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerCB`;
-
-    var tag = document.createElement("script");
-    tag.src = jsonpURL;
-    document.getElementsByTagName("head")[0].appendChild(tag);
+    $.getJSON(`${BREW_URL}/beers?styleId=${id}` , data => {
+      eventEmitter.emit('beer-list-received', data);
+    })
   }
 
   /*  If it is hot, recommend a light beer. If it is cold, recommend a dark beer.
@@ -173,7 +167,7 @@ const ENGINE = (function($, eventEmitter) {
      */
     let selectedBeerStyle = selectedStyles[ Math.floor( Math.random() * selectedStyles.length ) ];
 
-    // Uses JSONP to call ENGINE.beerCB()
+    // Calls ENGINE.beerCB()
     // ENGINE.beerCB emits 'beer-list-received'
     fetchBeersByStyleID( selectedBeerStyle.id );
     eventEmitter.once('beer-list-received', data => {
@@ -195,18 +189,4 @@ const ENGINE = (function($, eventEmitter) {
     if (DATA['weather'] && DATA['beerStyles'])
       eventEmitter.emit('beer-data-ready', DATA.weather, DATA.beerStyles);
   }
-
-  /*
-   *  Callback functions for JSONP requests
-   */
-  return {
-    beerStylesCB: function( data ) {
-      submitData('beerStyles', data);
-      eventEmitter.emit('beer-styles-received');
-    },
-    beerCB: function( data ) {
-      eventEmitter.emit('beer-list-received', data);
-    }
-  }
-
 })(jQuery, window.eventEmitter);
