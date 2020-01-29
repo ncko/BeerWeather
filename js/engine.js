@@ -12,6 +12,7 @@ const ENGINE = (function($, eventEmitter) {
   eventEmitter.on('beer-data-ready', generateBeerRecommendations);
   eventEmitter.on('start-again', init);
 
+  const BREW_URL = 'https://beerweather-api.ncko.app';
   const GEOCODE_URL = 'https://geocode.xyz/?scantext=${location}&json=1';
   const GEOCODE_DEFAULT_QUERY = { json: 1 };
   const FORECAST_URL = 'https://api.openweathermap.org/data/2.5/weather';
@@ -73,12 +74,18 @@ const ENGINE = (function($, eventEmitter) {
    *  The callback for the JSONP request is ENGINE.beerStyleCB
    */
   function fetchBeerStyles(){
-    const beerURL = encodeURIComponent('http://api.brewerydb.com/v2/styles/?key=8a9ed8ea98f0e79ee32f70659adfd782');
-    const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerStylesCB`;
+    // const beerURL = encodeURIComponent('http://api.brewerydb.com/v2/styles/?key=8a9ed8ea98f0e79ee32f70659adfd782');
+    // const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerStylesCB`;
 
-    var tag = document.createElement("script");
-    tag.src = jsonpURL;
-    document.getElementsByTagName("head")[0].appendChild(tag);
+    // var tag = document.createElement("script");
+    // tag.src = jsonpURL;
+    // document.getElementsByTagName("head")[0].appendChild(tag);
+
+      
+      $.getJSON(`${BREW_URL}/styles`, data => {
+        submitData('beerStyles', data);
+        eventEmitter.emit('beer-styles-received');
+      });
   }
 
   /*
@@ -86,12 +93,16 @@ const ENGINE = (function($, eventEmitter) {
    *  from the BreweryDB API. The callback for the JSONP request is ENGINE.beerCB
    */
   function fetchBeersByStyleID( id, fn ) {
-    const beerURL = encodeURIComponent(`http://api.brewerydb.com/v2/beers/?key=8a9ed8ea98f0e79ee32f70659adfd782&styleId=${id}`);
-    const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerCB`;
+    // const beerURL = encodeURIComponent(`http://api.brewerydb.com/v2/beers/?key=8a9ed8ea98f0e79ee32f70659adfd782&styleId=${id}`);
+    // const jsonpURL = `https://json2jsonp.com/?url=${beerURL}&callback=ENGINE.beerCB`;
 
-    var tag = document.createElement("script");
-    tag.src = jsonpURL;
-    document.getElementsByTagName("head")[0].appendChild(tag);
+    // var tag = document.createElement("script");
+    // tag.src = jsonpURL;
+    // document.getElementsByTagName("head")[0].appendChild(tag);
+
+    $.getJSON(`${BREW_URL}/beers?styleId=${id}` , data => {
+      eventEmitter.emit('beer-list-received', data);
+    })
   }
 
   /*  If it is hot, recommend a light beer. If it is cold, recommend a dark beer.
